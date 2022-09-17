@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd" xmlns:p="http://www.springframework.org/schema/p" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.springframework.org/schema/beans">
+
+
+<bean class="demo.spring.beans.Book" id="bk1">
+
+<constructor-arg value="101"/>
+
+<constructor-arg value="java spring programming"/>
+
+
+<constructor-arg>
+
+
+<list>
+
+<value>Taipei Store I</value>
+
+<value>Kaohsiung Store II</value>
+
+<value>Keelung Store III</value>
+
+</list>
+
+</constructor-arg>
+
+</bean>
+
+
+<bean class="org.springframework.jdbc.datasource.DriverManagerDataSource" id="ds">
+
+<property value="com.mysql.cj.jdbc.Driver" name="driverClassName"/>
+
+<property value="jdbc:mysql://localhost:3306/classicmodels?useUnicode=true&amp;characterEncoding=utf-8" name="url"/>
+
+<property value="root" name="username"/>
+
+<property value="1234" name="password"/>
+
+</bean>
+
+
+<bean class="org.springframework.jdbc.core.JdbcTemplate" id="jt">
+
+<property name="dataSource" ref="ds"/>
+
+</bean>
+
+
+<bean class="demo.spring.beans.EmployeeDao" id="dao">
+
+<property name="template" ref="jt"/>
+
+</bean>
+
+</beans>
